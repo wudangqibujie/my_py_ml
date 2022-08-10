@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../NLP_project/HFT-CNN/.idea/HFT-CNN.iml" filepath="$PROJECT_DIR$/../../NLP_project/HFT-CNN/.idea/HFT-CNN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../my_text_classification/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" filepath="$PROJECT_DIR$/../../my_text_classification/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/my_py_ml.iml" filepath="$PROJECT_DIR$/.idea/my_py_ml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../my_text_classification/.idea/my_text_classification.iml" filepath="$PROJECT_DIR$/../../my_text_classification/.idea/my_text_classification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../numpy-ml/.idea/numpy-ml.iml" filepath="$PROJECT_DIR$/../numpy-ml/.idea/numpy-ml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../NLP_project/textClassifier/.idea/textClassifier.iml" filepath="$PROJECT_DIR$/../../NLP_project/textClassifier/.idea/textClassifier.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../NLP_project/text_classification/.idea/text_classification.iml" filepath="$PROJECT_DIR$/../../NLP_project/text_classification/.idea/text_classification.iml" />
     </modules>
   </component>
 </project>

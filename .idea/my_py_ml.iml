@@ -4,5 +4,11 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="jdk" jdkName="Python 3.6 (py36tf14) (7)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="numpy-ml" />
+    <orderEntry type="module" module-name="HFT-CNN" />
+    <orderEntry type="module" module-name="my_text_classification" />
+    <orderEntry type="module" module-name="Hierarchical Classisify" />
+    <orderEntry type="module" module-name="text_classification" />
+    <orderEntry type="module" module-name="textClassifier" />
   </component>
 </module>

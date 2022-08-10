@@ -7,15 +7,15 @@ from sklearn.linear_model import LogisticRegression
 df = pd.read_csv("data/train.csv")
 
 cate_cols = [
-    "地理区域",
-    "是否双频",
-    "是否翻新机",
+    # "地理区域",
+    # "是否双频",
+    # "是否翻新机",
     "手机网络功能",
-    "婚姻状况",
-    "信息库匹配",
-    "信用卡指示器",
-    "新手机用户",
-    "信用等级代码",
+    # "婚姻状况",
+    # "信息库匹配",
+    # "信用卡指示器",
+    # "新手机用户",
+    # "信用等级代码",
     "账户消费限额",
 ]
 
@@ -82,11 +82,11 @@ numeric_cols = [
 ]
 sns.set_style("darkgrid")
 plt.style.use(['dark_background'])
-# numeric_cols = ["在职总月数",
+numeric_cols = ["在职总月数",
 # "家庭中唯一订阅者的数量",
-# "每月平均使用分钟数",
+"每月平均使用分钟数",
 # "平均占线语音呼叫数",
-# "平均未接语音呼叫数", ]
+"平均未接语音呼叫数", ]
 
 
 print(cate_cols)
@@ -95,6 +95,7 @@ df_cate = pd.get_dummies(df[cate_cols].astype("str"))
 df_nume = df[numeric_cols]
 df_label = df[["是否流失"]]
 df = pd.concat([df_label, df_cate, df_nume], axis=1)
+df = pd.concat([df_label, df_nume], axis=1)
 print(df.shape)
 
 
@@ -114,7 +115,7 @@ X = df.drop(columns=["是否流失"])
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=10056)
 df_train = pd.concat([X_train, y_train], axis=1)
 df_test = pd.concat([X_test, y_test], axis=1)
-df_train.to_csv("dx_train.csv", index=False)
-df_test.to_csv("dx_test.csv", index=False)
+df_train.to_csv("dx_train_3cols.csv", index=False)
+df_test.to_csv("dx_test_3cols.csv", index=False)
 for i in df_train.columns:
     print(i)

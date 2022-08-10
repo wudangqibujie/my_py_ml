@@ -3,9 +3,14 @@ from sklearn.preprocessing import StandardScaler
 import numpy as np
 from sklearn.metrics import roc_auc_score
 import os
+import random
 
-df_train = pd.read_csv("dx_train.csv")
-df_test = pd.read_csv("dx_test.csv")
+# df_train = pd.read_csv("dx_train.csv")
+# df_test = pd.read_csv("dx_test.csv")
+
+df_train = pd.read_csv("dx_train_3cols.csv")
+df_test = pd.read_csv("dx_test_3cols.csv")
+print(df_train.columns)
 df_mean = df_train.mean()
 std_cols = list(df_mean[df_mean > 10].index)
 scaler = StandardScaler()
@@ -23,14 +28,46 @@ class LR:
         self.weights = self._init_weights(X)
         for epoch in range(self.epoch):
             out = self._predict()
+            # print(out, sum(out))
             loss = self._loss(out, self.y)
-            self.grd = self._cal_gradients(out)
-            self._update_weight()
+            grd = self._cal_gradients(out)
+            hessian = self._get_hessian_matrix(out)
+            flg = np.linalg.det(hessian)
+            print(hessian)
+            print(flg)
+            # if flg > 0:
+            #     self._update_weight_newton(grd, hessian)
+            # else:
+            self._update_weight(grd)
             if epoch % 100 == 0:
                 acores = self.predprob(self.X)
                 auc = roc_auc_score(self.y, acores)
                 print(epoch, loss, auc)
 
+    def fit_step(self, X, y, batch_size=64):
+        idx = [i for i in range(X.shape[0])]
+        self.weights = self._init_weights(X)
+        for epoch in range(self.epoch):
+            random.shuffle(idx)
+            block_size = X.shape[0] // batch_size
+            loss = 0.
+            cnt = 0
+            for b in range(block_size):
+                batch_idx = idx[b * batch_size: (b + 1) * batch_size]
+                batch_X, batch_y = X[batch_idx], y[batch_idx]
+                ones = np.ones((batch_X.shape[0], 1))
+                self.X, self.y = np.concatenate([batch_X, ones], axis=1), batch_y
+                out = self._predict()
+                loss_ = self._loss(out, self.y)
+                grd = self._cal_gradients(out)
+                self._update_weight(grd)
+                loss += batch_X.shape[0] * loss_
+                cnt += batch_X.shape[0]
+            if epoch % 100 == 0:
+                ones = np.ones((X.shape[0], 1))
+                acores = self.predprob(np.concatenate([X, ones], axis=1))
+                auc = roc_auc_score(y, acores)
+                print(epoch, loss/cnt, auc)
 
     def predict(self, X):
         pass
@@ -41,7 +78,7 @@ class LR:
 
     def _init_weights(self, X):
         col_num = X.shape[-1] + 1
-        weights = np.random.normal(size=(col_num, ))
+        weights = np.random.uniform(size=(col_num, ))
         return weights
 
     def _sigmoid(self, Z):
@@ -66,12 +103,27 @@ class LR:
         logits = np.sum(-self.weights * self.X, axis=1)
         return self._sigmoid(logits)
 
-    def _update_weight(self):
+    def _get_hessian_matrix(self, prob):
+        val1 , val2 = self.X[:, :, np.newaxis], self.X[:, np.newaxis, :]
+        right_val = np.transpose(np.einsum("ijk,ikn->ijn", val1, val2), axes=(1, 2, 0))
+        left_val = prob * (1 - prob)
+        # print("********** left ***********")
+        # print(prob)
+        # print(left_val)
+        # print("********** right ***********")
+        # print(right_val)
+        hessian = np.transpose(left_val * right_val, axes=(2, 0, 1)).mean(axis=0)
+        return hessian
+
+    def _update_weight_newton(self, grad, hessian):
+        self.weights = self.weights - np.matmul(np.linalg.inv(hessian), grad)
+
+    def _update_weight(self, grd):
         # print("************************")
         # print(self.weights)
         # print("************* grd **************")
         # print(self.grd)
-        self.weights = self.weights - self.learning_rate * self.grd
+        self.weights = self.weights - self.learning_rate * grd
         # print(self.weights)
 
     def _loss(self, out, y):
@@ -94,14 +146,22 @@ if __name__ == '__main__':
     y_train = df_train["是否流失"]
     X_train = df_train.drop(columns=["是否流失"])
 
-    # lr = LogisticRegression(verbose=1)
+    # lr = LogisticRegression(verbose=1, solver="newton-cg")
     # lr.fit(X_train, y_train)
     # scores = lr.predict_proba(X_train)
     # auc = roc_auc_score(y_train, scores[:, 1])
     # print(auc)
 
-
     lr = LR(epoch=10000, learning_rate=0.1)
     lr.fit(X_train.values, y_train.values)
+    # lr.fit_step(X_train.values, y_train.values, batch_size=1)
 
-
+    # A = np.ones(shape=(100, 20, 1))
+    # B = np.ones(shape=(100, 1, 20))
+    # C = np.einsum("ijk,ikn->ijn", A, B)
+    # C = np.transpose(C, axes=(1, 2, 0))
+    # d = np.random.randn(100)
+    # D = np.transpose(d * C, axes=(2, 0, 1))
+    #
+    # AA = A[:, np.newaxis, :]
+    # print(A.shape, AA.shape)
