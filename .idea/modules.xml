@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Deep-learning-ML-and-tensorflow/.idea/Deep-learning-ML-and-tensorflow.iml" filepath="$PROJECT_DIR$/../Deep-learning-ML-and-tensorflow/.idea/Deep-learning-ML-and-tensorflow.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../NLP_project/HFT-CNN/.idea/HFT-CNN.iml" filepath="$PROJECT_DIR$/../../NLP_project/HFT-CNN/.idea/HFT-CNN.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../my_text_classification/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" filepath="$PROJECT_DIR$/../../my_text_classification/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Tensorflow_ML_Algorithms/.idea/Tensorflow_ML_Algorithms.iml" filepath="$PROJECT_DIR$/../Tensorflow_ML_Algorithms/.idea/Tensorflow_ML_Algorithms.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/my_py_ml.iml" filepath="$PROJECT_DIR$/.idea/my_py_ml.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../my_text_classification/.idea/my_text_classification.iml" filepath="$PROJECT_DIR$/../../my_text_classification/.idea/my_text_classification.iml" />
       <module fileurl="file://$PROJECT_DIR$/../numpy-ml/.idea/numpy-ml.iml" filepath="$PROJECT_DIR$/../numpy-ml/.idea/numpy-ml.iml" />

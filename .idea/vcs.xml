@@ -2,6 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Deep-learning-ML-and-tensorflow" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/../Tensorflow_ML_Algorithms" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../NLP_project/HFT-CNN" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../NLP_project/textClassifier" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/../../NLP_project/text_classification" vcs="Git" />

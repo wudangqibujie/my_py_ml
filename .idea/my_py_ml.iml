@@ -7,8 +7,9 @@
     <orderEntry type="module" module-name="numpy-ml" />
     <orderEntry type="module" module-name="HFT-CNN" />
     <orderEntry type="module" module-name="my_text_classification" />
-    <orderEntry type="module" module-name="Hierarchical Classisify" />
     <orderEntry type="module" module-name="text_classification" />
     <orderEntry type="module" module-name="textClassifier" />
+    <orderEntry type="module" module-name="Deep-learning-ML-and-tensorflow" />
+    <orderEntry type="module" module-name="Tensorflow_ML_Algorithms" />
   </component>
 </module>
