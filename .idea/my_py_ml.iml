@@ -11,5 +11,9 @@
     <orderEntry type="module" module-name="textClassifier" />
     <orderEntry type="module" module-name="Deep-learning-ML-and-tensorflow" />
     <orderEntry type="module" module-name="Tensorflow_ML_Algorithms" />
+    <orderEntry type="module" module-name="tensorflow-logistics-regression" />
+    <orderEntry type="module" module-name="tf-lr" />
+    <orderEntry type="module" module-name="treernn" />
+    <orderEntry type="module" module-name="easy_rec" />
   </component>
 </module>

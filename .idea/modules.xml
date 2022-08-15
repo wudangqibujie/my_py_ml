@@ -5,11 +5,15 @@
       <module fileurl="file://$PROJECT_DIR$/../Deep-learning-ML-and-tensorflow/.idea/Deep-learning-ML-and-tensorflow.iml" filepath="$PROJECT_DIR$/../Deep-learning-ML-and-tensorflow/.idea/Deep-learning-ML-and-tensorflow.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../NLP_project/HFT-CNN/.idea/HFT-CNN.iml" filepath="$PROJECT_DIR$/../../NLP_project/HFT-CNN/.idea/HFT-CNN.iml" />
       <module fileurl="file://$PROJECT_DIR$/../Tensorflow_ML_Algorithms/.idea/Tensorflow_ML_Algorithms.iml" filepath="$PROJECT_DIR$/../Tensorflow_ML_Algorithms/.idea/Tensorflow_ML_Algorithms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Anaconda/envs/py36tf14/Lib/site-packages/easy_rec-0.2.4-py3.6.egg/easy_rec/.idea/easy_rec.iml" filepath="$PROJECT_DIR$/../../Anaconda/envs/py36tf14/Lib/site-packages/easy_rec-0.2.4-py3.6.egg/easy_rec/.idea/easy_rec.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/my_py_ml.iml" filepath="$PROJECT_DIR$/.idea/my_py_ml.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../my_text_classification/.idea/my_text_classification.iml" filepath="$PROJECT_DIR$/../../my_text_classification/.idea/my_text_classification.iml" />
       <module fileurl="file://$PROJECT_DIR$/../numpy-ml/.idea/numpy-ml.iml" filepath="$PROJECT_DIR$/../numpy-ml/.idea/numpy-ml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tensorflow-logistics-regression/.idea/tensorflow-logistics-regression.iml" filepath="$PROJECT_DIR$/tensorflow-logistics-regression/.idea/tensorflow-logistics-regression.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../NLP_project/textClassifier/.idea/textClassifier.iml" filepath="$PROJECT_DIR$/../../NLP_project/textClassifier/.idea/textClassifier.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../NLP_project/text_classification/.idea/text_classification.iml" filepath="$PROJECT_DIR$/../../NLP_project/text_classification/.idea/text_classification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../tensorflow-logistics-regression/.idea/tf-lr.iml" filepath="$PROJECT_DIR$/../tensorflow-logistics-regression/.idea/tf-lr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../treernn/.idea/treernn.iml" filepath="$PROJECT_DIR$/../treernn/.idea/treernn.iml" />
     </modules>
   </component>
 </project>
