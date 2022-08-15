@@ -15,5 +15,6 @@
     <orderEntry type="module" module-name="tf-lr" />
     <orderEntry type="module" module-name="treernn" />
     <orderEntry type="module" module-name="easy_rec" />
+    <orderEntry type="module" module-name="EasyRec" />
   </component>
 </module>

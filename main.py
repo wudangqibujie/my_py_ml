@@ -18,3 +18,4 @@ for epoch in range(1):
     tf.summary.scalar("val_loss", val_loss)
     print(f"Epoch:{epoch} train step: loss_{train_loss}, acc_{train_acc} Val step: loss_{val_loss}, acc_{val_acc}")
 tf.train.Saver().save(sess, "../data/model_ckpt/cnews/cnews")
+

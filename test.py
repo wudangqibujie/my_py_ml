@@ -34,8 +34,25 @@
 # print(len(tv.get_feature_names()))
 #
 
-import pandas as pd
-df = pd.read_csv("data/train.csv", encoding="utf-8")
-print(df.columns)
+# import pandas as pd
+# df = pd.read_csv("data/train.csv", encoding="utf-8")
+# print(df.columns)
+#
+# import tensorflow as tf
+# a = tf.constant([10, 4, 3, 6, 7, 1, 2, 5])
+# a = tf.as_string(a)
+# out = tf.string_to_hash_bucket_fast(a, num_buckets=4)
+# sess = tf.Session()
+# print(sess.run(out))
 
+# f = open("data/train.csv", encoding="utf-8")
+# for i in f:
+#     print(i.strip())
 
+from dataset.dx_dataset import DXDataset
+dxDataset = DXDataset("data/train.csv")
+print(dxDataset.columns_name)
+
+for features, label in dxDataset.read_iterator():
+    print(features)
+    print(label)
