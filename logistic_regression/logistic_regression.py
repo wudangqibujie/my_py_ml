@@ -53,6 +53,29 @@ class LogisticRegression:
         return loss, acc
 
 
+class LogisticRegressionV2:
+    def __init__(self, cate_feat_num, numeric_feat_num, vocab_size):
+        self.input_cate_pd = tf.placeholder(dtype=tf.int64, shape=[None, cate_feat_num])
+        self.input_num_ph = tf.placeholder(dtype=tf.float32, shape=[None, numeric_feat_num])
+        self.label_ph = tf.placeholder(dtype=tf.int32, shape=[None, 1])
+        self.label = tf.cast(self.label_ph, tf.float32)
+
+        self.embedding_cate = tf.get_variable(name="cate_weight", shape=[vocab_size, 1], dtype=tf.float32,
+                                              initializer=tf.truncated_normal_initializer(stddev=0.02))
+        self.embedding_nume = tf.get_variable(name="num_weight", shape=[numeric_feat_num, 1], dtype=tf.float32,
+                                              initializer=tf.truncated_normal_initializer(stddev=0.02))
+        self.cat_out = tf.reduce_sum(tf.nn.embedding_lookup(self.embedding_cate, self.input_cate_pd), axis=0)
+
+        self.num_out = tf.reduce_sum(tf.matmul(self.input_num_ph, self.embedding_nume), axis=0)
+        self.bias = tf.Variable(0.)
+        # print(self.cat_out.shape, self.num_out.shape)
+        self.out = self.cat_out + self.num_out + self.bias
+        self.loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(labels=tf.squeeze(self.label), logits=self.out)) + 0.1 * tf.nn.l2_loss(self.embedding_cate) + 0.1 * tf.nn.l2_loss(self.embedding_nume)
+
+        self.train_op = tf.train.GradientDescentOptimizer(learning_rate=0.1).minimize(self.loss)
+        self.tvars = tf.trainable_variables()
+        self.grads = tf.gradients(self.loss, self.tvars)
+
 if __name__ == '__main__':
     VOCAB_SIZE = 10799
     sess = tf.Session()

@@ -16,8 +16,12 @@
     <orderEntry type="module" module-name="treernn" />
     <orderEntry type="module" module-name="easy_rec" />
     <orderEntry type="module" module-name="EasyRec" />
+<<<<<<< HEAD
     <orderEntry type="module" module-name="tinygbt" />
     <orderEntry type="module" module-name="GBDT_Simple_Tutorial" />
     <orderEntry type="module" module-name="svmpy" />
+=======
+    <orderEntry type="module" module-name="Hierarchical Classisify" />
+>>>>>>> f9cb0aff50c2075889fc3a2b2f8efc871b2ffecd
   </component>
 </module>

@@ -49,10 +49,128 @@
 # for i in f:
 #     print(i.strip())
 
-from dataset.dx_dataset import DXDataset
-dxDataset = DXDataset("data/train.csv")
-print(dxDataset.columns_name)
+# from dataset.dx_dataset import DXDataset
+# dxDataset = DXDataset("data/train.csv")
+# print(dxDataset.columns_name)
+#
+# for features, label in dxDataset.read_iterator():
+#     print(features)
+#     print(label)
 
-for features, label in dxDataset.read_iterator():
-    print(features)
-    print(label)
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+# #
+df = pd.read_csv("data/train.csv", encoding="utf-8")
+from dataset.dx_dataset import CATE_COLS, NUMERIC_COLS
+# #
+enc = LabelEncoder()
+#
+for ix in range(len(CATE_COLS)):
+    df[CATE_COLS[ix]] = enc.fit_transform(df[CATE_COLS[ix]])
+df_max_id = df[CATE_COLS].max(axis=0)
+print(df_max_id)
+df_max_id_columns = df_max_id.index
+df_max_id_values = df_max_id.values
+ls_val = df_max_id_values[0]
+print()
+for ix, i in enumerate(df_max_id_columns):
+    if ix == 0: continue
+    df[i] = df[i] + ls_val + 1
+    ls_val = df[i].max()
+print(df[CATE_COLS].max(axis=0))
+
+for n in NUMERIC_COLS + CATE_COLS:
+    df[n] = (df[n] - df[n].mean()) / df[n].std()
+print(df[CATE_COLS[0]].values)
+
+# df.to_csv("../data/dx_train.csv", index=False)
+
+df_cate = df[CATE_COLS].values
+df_numeric = df[NUMERIC_COLS].values
+df_label = df["是否流失"].values
+print(df_label)
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import roc_auc_score
+model = LogisticRegression(max_iter=500, solver="sag")
+model.fit(df[CATE_COLS+NUMERIC_COLS].values, df_label)
+
+# import random
+# import collections
+# import tensorflow as tf
+#
+#
+# def _create_int_feature(value):
+#     return tf.train.Feature(int64_list=tf.train.Int64List(value=list(value)))
+#
+#
+# def _create_float_feature(value):
+#     return tf.train.Feature(float_list=tf.train.FloatList(value=list(value)))
+#
+#
+# def create_features(cate_feats, num_feats, label):
+#     features = collections.OrderedDict()
+#     features["num_features"] = _create_float_feature(num_feats)
+#     features["cate_features"] = _create_int_feature(cate_feats)
+#     features["label"] = _create_int_feature([label])
+#     return tf.train.Example(features=tf.train.Features(feature=features))
+#
+#
+# train_writer = tf.python_io.TFRecordWriter("../data/dx_train.tf_record")
+# val_writer = tf.python_io.TFRecordWriter("../data/dx_val.tf_record")
+#
+# for ix, i in enumerate(df_cate):
+#     tf_axample = create_features(i, df_numeric[ix], df_label[ix])
+#     # print(tf_axample)
+#     if random.random() < 0.8:
+#         train_writer.write(tf_axample.SerializeToString())
+#     else:
+#         val_writer.write(tf_axample.SerializeToString())
+# import pandas as pd
+# df = pd.read_csv("../data/dx_train.csv")
+# for c in CATE_COLS:
+#     print(df[c].max())
+
+
+# import tensorflow as tf
+#
+#
+# def parse(record):
+#     name_to_features = {
+#         "num_features": tf.FixedLenFeature([len(NUMERIC_COLS)], tf.float32),
+#         "cate_features": tf.FixedLenFeature([len(CATE_COLS)], tf.int64),
+#         "label": tf.FixedLenFeature([1], tf.int64)
+#     }
+#     features = tf.parse_single_example(record, name_to_features)
+#     return features
+#
+#
+# def readDataset(tf_record_file, batch_size):
+#     dataset = tf.data.TFRecordDataset(tf_record_file)
+#     dataset = dataset.map(parse).shuffle(100).batch(batch_size)
+#     dataset = dataset.make_one_shot_iterator().get_next()
+#     return dataset
+#
+#
+# from logistic_regression.logistic_regression import LogisticRegressionV2
+#
+# train_dataset = readDataset("../data/dx_train.tf_record", 64)
+# val_dataset = readDataset("../data/dx_val.tf_record", 64)
+#
+# model = LogisticRegressionV2(len(CATE_COLS), len(NUMERIC_COLS), 100)
+# sess = tf.Session()
+# sess.run(tf.global_variables_initializer())
+#
+# for epoch in range(100):
+#     while True:
+#         try:
+#             read_data = sess.run(train_dataset)
+#             input_num, input_cate, label = read_data["num_features"], read_data["cate_features"], read_data["label"]
+#             # print(input_num.shape)
+#             out, emb, _ = sess.run([model.cat_out, model.num_out, model.train_op], feed_dict={model.input_num_ph: input_num, model.input_cate_pd: input_cate, model.label_ph: label})
+#             # sess.run(model.train_op, feed_dict={model.input_num_ph: input_num, model.input_cate_pd: input_cate, model.label_ph: label})
+#         except tf.errors.OutOfRangeError:
+#             break
+#     print(epoch)
+#     print(out)
+#     print(emb)
+    # print(emb)
