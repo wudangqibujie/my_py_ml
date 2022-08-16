@@ -16,5 +16,6 @@
     <orderEntry type="module" module-name="treernn" />
     <orderEntry type="module" module-name="easy_rec" />
     <orderEntry type="module" module-name="EasyRec" />
+    <orderEntry type="module" module-name="Hierarchical Classisify" />
   </component>
 </module>

@@ -1,5 +1,7 @@
 import pandas as pd
 import random
+from enum import Enum
+from collections import OrderedDict
 import tensorflow as tf
 
 
@@ -76,20 +78,40 @@ NUMERIC_COLS = [
 ]
 
 
+class FieldType(Enum):
+    category = "category"
+    numeric = "numeric"
+
+
 class FeatureInfo:
-    def __init__(self, feature_name, feature_value, feature_group_id, column_type="category", feature_id=None):
+    def __init__(self, feature_name, feature_value, feature_group_id, column_type="category", origin_feature=None):
         self.feature_name = feature_name
         self.column_type = column_type
         self.feature_group_id = feature_group_id
-        self.feature_id = feature_id
+        self.origin_feature = origin_feature
         self.feature_value = feature_value
 
 
-class FieldInfo:
-    def __init__(self, field_name, field_id, max_value):
+class FieldsInfo:
+    def __init__(self, field_name, field_id, field_type):
         self.field_name = field_name
         self.field_id = field_id
-        self.max_value = max_value
+        self.field_type = field_type
+        self.filed_value_map = OrderedDict()
+
+    @property
+    def get_field_value_set_num(self):
+        return len(self.filed_value_map)
+
+    def update_field_info(self):
+        pass
+
+
+# class FeaturesInfo:
+#     def __init__(self):
+#         self.info = OrderedDict()
+#
+#     def update_info(self, field_info):
 
 
 class DXDataset:
@@ -113,10 +135,19 @@ class DXDataset:
             for ix, i in enumerate(f):
                 if ix == 0:
                     continue
-                lines = i.strip().split(",")
-                features = lines[1: -1]
-                label = lines[-1]
-                yield [float(i) for i in features], label
+                lines = i.strip()
+
+    def parse_line(self, line):
+        lines = line.split(",")
+        raw_features = lines[1: -1]
+        label = int(lines[-1])
+        for ix, i in enumerate(raw_features):
+            is_cate_col = self.columns_name[ix] in CATE_COLS
+            if is_cate_col:
+                fieldsInfo = FieldsInfo(self.columns_name[ix], field_id=ix, field_type=FieldType.category.value)
+            else:
+                fieldsInfo = FieldsInfo(self.columns_name[ix], field_id=ix, field_type=FieldType.numeric.value)
+
 
     def writer_TFrecord(self, writer_num, tf_record_fle, file_predix=""):
         witers = [tf.python_io.TFRecordWriter(f"{tf_record_fle}_{file_predix}_{i}.tf_record") for i in range(writer_num)]
