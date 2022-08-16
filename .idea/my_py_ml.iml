@@ -16,5 +16,8 @@
     <orderEntry type="module" module-name="treernn" />
     <orderEntry type="module" module-name="easy_rec" />
     <orderEntry type="module" module-name="EasyRec" />
+    <orderEntry type="module" module-name="tinygbt" />
+    <orderEntry type="module" module-name="GBDT_Simple_Tutorial" />
+    <orderEntry type="module" module-name="svmpy" />
   </component>
 </module>

@@ -1,7 +1,7 @@
 import pandas as pd
 import random
 import tensorflow as tf
-
+from tensorflow.contrib.boosted_trees.estimator_batch.estimator import GradientBoostedDecisionTreeClassifier
 
 CATE_COLS = [
     "地理区域",
