@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../Deep-learning-ML-and-tensorflow/.idea/Deep-learning-ML-and-tensorflow.iml" filepath="$PROJECT_DIR$/../Deep-learning-ML-and-tensorflow/.idea/Deep-learning-ML-and-tensorflow.iml" />
       <module fileurl="file://$PROJECT_DIR$/../EasyRec/.idea/EasyRec.iml" filepath="$PROJECT_DIR$/../EasyRec/.idea/EasyRec.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Easy_HMM/.idea/Easy_HMM.iml" filepath="$PROJECT_DIR$/../Easy_HMM/.idea/Easy_HMM.iml" />
       <module fileurl="file://$PROJECT_DIR$/../GBDT_Simple_Tutorial/.idea/GBDT_Simple_Tutorial.iml" filepath="$PROJECT_DIR$/../GBDT_Simple_Tutorial/.idea/GBDT_Simple_Tutorial.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../NLP_project/HFT-CNN/.idea/HFT-CNN.iml" filepath="$PROJECT_DIR$/../../NLP_project/HFT-CNN/.idea/HFT-CNN.iml" />
       <module fileurl="file://$PROJECT_DIR$/../../NLP_project/my_text_classification/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" filepath="$PROJECT_DIR$/../../NLP_project/my_text_classification/Hierarchical Classisify/.idea/Hierarchical Classisify.iml" />
